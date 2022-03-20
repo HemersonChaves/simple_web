@@ -1,0 +1,11 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/HemersonChaves/simple_web.git",
+  "author": "Hemerson Chaves <hemersonchaves20@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bulma": "^0.9.3"
+  }
+}
