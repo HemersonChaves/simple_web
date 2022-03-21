@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import apiAxios from "../infra/http/api"
 
 function Cadastro() {
@@ -7,19 +7,21 @@ function Cadastro() {
     const [dt, setDt] = useState("");
     const [sexo, setSexo] = useState("");
 
-    useEffect(() => {
-        apiAxios
-            .get("/pessoa")
-            .then((response) => setPessoas(response.data))
-            .catch((err) => {
-                console.error("ops! ocorreu um erro" + err);
-            });
-    }, []);
-    function cadastrarPessoa(){
+    function cadastrarPessoa() {
         console.log(nome);
         console.log(cpf);
         console.log(dt);
         console.log(sexo);
+
+        const pessoa = { nome, cpf, dt, sexo };
+        apiAxios.post('/pessoa/criar', pessoa)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch(error => {
+
+                console.error('There was an error!', error);
+            });
     }
     return (
         <div className="content">
@@ -30,8 +32,8 @@ function Cadastro() {
                         <label className="label">Nome</label>
                         <div className="control">
                             <input className="input" type="text" placeholder="Nome"
-                            onChange={(e) => setNome(e.target.value)}
-                            value={nome}
+                                onChange={(e) => setNome(e.target.value)}
+                                value={nome}
                             ></input>
                         </div>
                     </div>
@@ -39,8 +41,8 @@ function Cadastro() {
                         <label className="label">cpf</label>
                         <div className="control">
                             <input className="input" type="text" placeholder="cpf"
-                            onChange={(e) => setCpf(e.target.value)}
-                            value={cpf}
+                                onChange={(e) => setCpf(e.target.value)}
+                                value={cpf}
                             ></input>
                         </div>
                     </div>
@@ -48,15 +50,15 @@ function Cadastro() {
                         <label className="label">dt_nascimento</label>
                         <div className="control">
                             <input className="input" type="text" placeholder="data nascimento"
-                            onChange={(e) => setDt(e.target.value)}
-                            value={dt}
+                                onChange={(e) => setDt(e.target.value)}
+                                value={dt}
                             ></input>
                         </div>
                     </div>
                     <div className="select">
                         <select
-                        onChange={(e) => setSexo(e.target.value)}
-                        value={sexo}
+                            onChange={(e) => setSexo(e.target.value)}
+                            value={sexo}
                         >
                             <option value="m">masculino</option>
                             <option value="f">feminino</option>
@@ -66,6 +68,7 @@ function Cadastro() {
                         <button className="button is-primary" onClick={cadastrarPessoa}>Submit</button>
                     </div>
                 </div>
+                <h1 id="f"></h1>
             </div>
         </div >
     )
