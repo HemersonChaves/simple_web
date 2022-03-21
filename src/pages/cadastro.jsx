@@ -4,7 +4,7 @@ import apiAxios from "../infra/http/api"
 function Cadastro() {
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
-    const [dt, setDt] = useState("");
+    const [dt_nascimento, setDt] = useState("");
     const [sexo, setSexo] = useState("");
 
     function cadastrarPessoa() {
@@ -13,7 +13,7 @@ function Cadastro() {
         console.log(dt);
         console.log(sexo);
 
-        const pessoa = { nome, cpf, dt, sexo };
+        const pessoa = { nome, cpf, dt_nascimento, sexo };
         apiAxios.post('/pessoa/criar', pessoa)
             .then((response) => {
                 console.log(response);
@@ -51,7 +51,7 @@ function Cadastro() {
                         <div className="control">
                             <input className="input" type="text" placeholder="data nascimento"
                                 onChange={(e) => setDt(e.target.value)}
-                                value={dt}
+                                value={dt_nascimento}
                             ></input>
                         </div>
                     </div>
