@@ -2,6 +2,7 @@ import {BrowserRouter as Router, Link,
     Routes, Route} from 'react-router-dom'
   
   import Tabela from '../pages/tabela';
+  import Cadastro from '../pages/cadastro';
     
   function Rotas() {
     return (
@@ -13,6 +14,7 @@ import {BrowserRouter as Router, Link,
           </nav>
           <Routes>
             <Route path="/" element={<Tabela />} />
+            <Route path="/cadastro" element={<Cadastro />} />
           
           </Routes>
        </Router>
